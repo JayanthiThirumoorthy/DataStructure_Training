@@ -1,0 +1,151 @@
+class Node {
+    String data;
+    Node next;
+
+    public Node(String data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList {
+    Node head;
+
+    public void append(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = newNode;
+    }
+
+    public void insertAtBeginning(String data) {
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void insertAtPosition(String data, int position) {
+        if (position < 1) {
+            System.out.println("Invalid position.");
+            return;
+        }
+        if (position == 1) {
+            insertAtBeginning(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        Node curr = head;
+        for (int i = 1; i < position - 1; i++) {
+            if (curr == null) {
+                System.out.println("Position out of bounds.");
+                return;
+            }
+            curr = curr.next;
+        }
+
+        if (curr == null) {
+            System.out.println("Position out of bounds.");
+            return;
+        }
+
+        newNode.next = curr.next;
+        curr.next = newNode;
+    }
+
+    public void deleteNode(String key) {
+        if (head == null) return;
+
+        if (head.data.equals(key)) {
+            head = head.next;
+            return;
+        }
+
+        Node curr = head;
+        Node prev = null;
+
+        while (curr != null && !curr.data.equals(key)) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        if (curr == null) return; // Not found
+
+        prev.next = curr.next;
+    }
+
+    public void display() {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data);
+            if (curr.next != null) System.out.print(" -> ");
+            curr = curr.next;
+        }
+        System.out.println();
+    }
+
+    public int search(String key) {
+        Node curr = head;
+        int position = 1;
+        while (curr != null) {
+            if (curr.data.equals(key)) {
+                return position;
+            }
+            curr = curr.next;
+            position++;
+        }
+        return -1; // Not found
+    }
+}
+
+public class LinkedListDemo {
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        // 1. Add 5 nodes: chocolate, cake, biscuit, brownie, ice cream
+        list.append("chocolate");
+        list.append("cake");
+        list.append("biscuit");
+        list.append("brownie");
+        list.append("ice cream");
+
+        // 2. Display elements
+        System.out.print("Initial list: ");
+        list.display();
+
+        // 3. Insert coffee at beginning
+        list.insertAtBeginning("coffee");
+
+        // 4. Insert briyani at the end
+        list.append("briyani");
+
+        // 5. Insert a node at 3rd position (let's insert "pasta")
+        list.insertAtPosition("pasta", 3);
+
+        System.out.print("After insertions: ");
+        list.display();
+
+        // 6. Delete coffee, briyani, brownie
+        list.deleteNode("coffee");
+        list.deleteNode("briyani");
+        list.deleteNode("brownie");
+
+        // 7. Display elements after deletions
+        System.out.print("After deletions: ");
+        list.display();
+
+        // 8. Search for "ice cream" position
+        int pos = list.search("ice cream");
+        if (pos != -1) {
+            System.out.println("\"ice cream\" found at position: " + pos);
+        } else {
+            System.out.println("\"ice cream\" not found in the list.");
+        }
+    }
+}
