@@ -1,0 +1,77 @@
+import java.util.scanner;
+class Stack{
+ string a[]= new String[5];
+ int top = -1;
+
+public void push(String data){
+  if(top==a.length-1){
+    System.Out.Println("Stack is Full");
+ }
+ else{
+    top++;
+    a[top] = data;
+ }
+}
+public void pop{
+  if(top==-1){
+    System.Out.Println("Stack is Empty");
+  }
+  else{
+    top--;
+  }
+}
+public void display{
+  for(int i=top:i>=0:i--){
+     System.Out.Println("Elements:" +a[top]);
+  }
+}
+}
+
+public static void main(String args[]){
+  Scanner sc = new Scanner(System.in);
+  Stack s = new Stack();
+//1.push and display the elements
+  s.push("Carrot");
+  s.push("Tomato");
+  s.push("Onion");
+  s.pop;
+  s.push("Potato");
+  s.pop;
+  for(i=0;i<=top;i++){
+     System.Out.Println("The Elements are: " + a[top]);
+}
+
+// 2. Predict the output
+int top= -1;
+s.push("Cabbage");
+s.push("Beans");
+s."Brinjal");
+s.pop();
+s.push("Pumpkin");
+s.push("Radish");
+ for(int i=top:i>=0:i--){
+     System.Out.Println("Elements:" +a[top]);
+}
+
+// 3. initialize and display the vegetables remaining from the operations 
+s.push("Spinach");
+s.push("Beetroot");
+s.pop;
+s.push("Cauliflower");
+s.push("Ladyfinger");
+s.pop;
+ for(int i=top:i>=0:i--){
+     System.Out.Println("Elements:" +a[top]);
+}
+
+// Display the Stack from bottom to top
+int top = -1;
+s.push("Turnip");
+s.push("Radish");
+s.push("Broccoli");
+s.pop;
+s.push("Capsicum");
+for(i=0;i<=top;i++){
+     System.Out.Println("The Elements are: " + a[top]);
+}
+}
